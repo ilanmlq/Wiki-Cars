@@ -1,8 +1,0 @@
-DROP SCHEMA IF EXISTS `wikiCars`;
-CREATE SCHEMA `wikiCars`;
-USE `wikiCars`;
-DROP USER IF EXISTS 'wikiCarsAdmin'@'localhost';
-# Mot de passe : "3x8xK3t6RqsZyk"
-CREATE USER IF NOT EXISTS 'wikiCarsAdmin'@'localhost' IDENTIFIED BY PASSWORD '*92E47B0C88C8C10A612C71CB0B43BFA4ED11F77B';
-GRANT ALL PRIVILEGES ON `wikiCars` TO 'wikiCarsAdmin'@'localhost';
-FLUSH PRIVILEGES;
