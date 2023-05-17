@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author  Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: myCar.php
+ * Descriptif : Page qui affiche les fiches de l'utilisateur et qui permet d'en crée une
+ */
 if (!User::isConnected()) {
     header("Location: ../index.php?url=home&action=home");
     exit;

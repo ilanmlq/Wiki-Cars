@@ -4,7 +4,7 @@
  * @author : Ilan Maleq
  * Project: Wiki-Cars
  * Page: index.php
- * Description : Page d'index qui redirige en fonction de l'url
+ * Description : Page d'acceuil qui permet d'afficher les dernières fiches, toutes les fiches et de faire une recherche
  **/
 
 ?>
@@ -33,14 +33,6 @@ if (isset($_SESSION['addFavoriteCar'])) { ?>
         ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div><br>
-<?php }
-if (isset($_SESSION['validAccount'])) { ?>
-    <div class="alert alert-success  alert-dismissible fade show" margin:auto" role="alert">
-        <?php echo $_SESSION['validAccount'];
-        unset($_SESSION['validAccount']);
-        ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div><br>
 <?php } ?>
 <div class="form-group" style>
     <form action="index.php" method="GET">
@@ -48,11 +40,11 @@ if (isset($_SESSION['validAccount'])) { ?>
         <input type="hidden" name="action" value="searchCars">
         <div class="form-group">
             <label for="brand">Marque</label>
-            <input value="<?= $brand ?>" type="text" class="form-control" id="brand" name="brand">
+            <input value="<?= isset($brand) ?>" type="text" class="form-control" id="brand" name="brand">
         </div>
         <div class="form-group">
             <label for="model">Modèle</label>
-            <input value="<?= $model ?>" type="text" class="form-control" id="model" name="model">
+            <input value="<?= isset($model) ?>" type="text" class="form-control" id="model" name="model">
         </div>
         <div class="form-group">
             <label for="category">Catégorie</label>
@@ -108,7 +100,7 @@ if (isset($_SESSION['validAccount'])) { ?>
                                 $isFavorite = Car::isFavorite($_SESSION['idUser'], $car->idVoiture); ?>
                                 <a href="index.php?url=cars&action=duplicateCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-success">Dupliquer</a>
                                 <?php if (!$isFavorite || ($_SESSION['idUser'] != $isFavorite['idUser'])) { ?>
-                                    <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favoris</a>
+                                    <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favori</a>
                                 <?php } ?>
                             <?php } ?>
                             <a href="index.php?url=cars&action=carDetail&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-dark">Voir plus</a>
@@ -136,7 +128,7 @@ if (isset($_SESSION['validAccount'])) { ?>
                             <a href="index.php?url=cars&action=duplicateCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-success">Dupliquer</a>
                             <?php
                             if ((!$isFavorite || ($_SESSION['idUser'] != $isFavorite['idUser']))) { ?>
-                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favoris</a>
+                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favori</a>
                         <?php }
                         } ?>
                         <a href="index.php?url=cars&action=carDetail&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-dark">Voir plus</a>
@@ -164,7 +156,7 @@ if (isset($_SESSION['validAccount'])) { ?>
                             <a href="index.php?url=cars&action=duplicateCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-success">Dupliquer</a>
                             <?php
                             if ((!$isFavorite || ($_SESSION['idUser'] != $isFavorite['idUser']))) { ?>
-                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favoris</a>
+                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favori</a>
                         <?php }
                         } ?>
                         <a href="index.php?url=cars&action=carDetail&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-dark">Voir plus</a>

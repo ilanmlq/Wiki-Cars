@@ -10,7 +10,7 @@
 class Car
 {
     /**
-     * Get all from Cars
+     * Get all car
      *
      * @return array
      */
@@ -25,12 +25,12 @@ class Car
     }
 
     /**
-     * Get all car of the User
+     * Get all user car
      *
-     * @param [type] $idUser
+     * @param integer $idUser
      * @return array
      */
-    public static function getAllMyCars($idUser): array
+    public static function getAllMyCars(int $idUser): array
     {
         $query = "SELECT * FROM voiture WHERE idUser = :idUser";
 
@@ -128,7 +128,7 @@ class Car
     }
 
     /**
-     * Get 7 last uploaded car 
+     * Get last 7 car
      *
      * @return array
      */
@@ -142,11 +142,7 @@ class Car
         return $req->fetchAll();
     }
 
-    /**
-     * Get all categories
-     *
-     * @return array
-     **/
+
     public static function getCategory(): array
     {
         $query = "SELECT * FROM categorie";
@@ -173,8 +169,8 @@ class Car
     }
 
     /**
-     * Get all energy from energie
-     * @return mixed
+     * Get all energy 
+     * @return array
      */
     public static function getEnergy(): array
     {
@@ -187,8 +183,8 @@ class Car
     }
 
     /**
-     * Get all transmission from transmission
-     * @return mixed
+     * Get all transmission
+     * @return array
      */
     public static function getTransmission(): array
     {
@@ -201,8 +197,8 @@ class Car
     }
 
     /**
-     * get all gear box from boiteVitesse
-     * @return mixed
+     * get all gear box 
+     * @return array
      */
     public static function getGearBox(): array
     {
@@ -215,8 +211,8 @@ class Car
     }
 
     /**
-     * get all visibility from visibilite
-     * @return mixed
+     * get all visibility
+     * @return array
      */
     public static function getVisibility(): array
     {
@@ -230,7 +226,7 @@ class Car
 
     /**
      * find all car 
-     * @return mixed
+     * @return array
      */
     public static function findAllCar()
     {
@@ -264,10 +260,10 @@ class Car
 
     /**
      * update car visibility to private for admin
-     * @param mixed $idCar
+     * @param integer $idCar
      * @return void
      */
-    public static function modifyPrivateAdmin($idCar)
+    public static function modifyPrivateAdmin(int $idCar)
     {
         $query = "UPDATE voiture SET idVisibilite = 1 WHERE idVoiture = :idVoiture";
 
@@ -277,10 +273,10 @@ class Car
     }
     /**
      * update car visibility to public for admin
-     * @param mixed $idCar
+     * @param integer $idCar
      * @return void
      */
-    public static function modifyPublicAdmin($idCar)
+    public static function modifyPublicAdmin(int $idCar)
     {
         $query = "UPDATE voiture SET idVisibilite = 2 WHERE idVoiture = :idVoiture";
 
@@ -291,10 +287,10 @@ class Car
 
     /**
      * update car visibility to private
-     * @param mixed $idCar
+     * @param integer $idCar
      * @return void
      */
-    public static function putPrivateCar($idCar)
+    public static function putPrivateCar(int $idCar)
     {
         $query = "UPDATE voiture SET idVisibilite = 1 WHERE idVoiture = :idVoiture";
 
@@ -304,10 +300,10 @@ class Car
     }
     /**
      * update car visibility to public
-     * @param mixed $idCar
+     * @param integer $idCar
      * @return void
      */
-    public static function modifyPrivate($idCar)
+    public static function modifyPrivate(int $idCar)
     {
         $query = "UPDATE voiture SET idVisibilite = 2 WHERE idVoiture = :idVoiture";
 
@@ -317,11 +313,11 @@ class Car
     }
 
     /**
-     * get all public car from user
-     * @param mixed $idUser
+     * get all public car of user
+     * @param integer $idUser
      * @return mixed
      */
-    public static function allMyPublicCar($idUser)
+    public static function allMyPublicCar(int $idUser)
     {
         $query = "SELECT * FROM voiture WHERE idVisibilite = 2 AND idUser = :idUser";
 
@@ -333,11 +329,11 @@ class Car
     }
 
     /**
-     * get all private car from user
-     * @param mixed $idUser
+     * get all private car 
+     * @param integer $idUser
      * @return mixed
      */
-    public static function allMyPrivateCar($idUser)
+    public static function allMyPrivateCar(int $idUser)
     {
         $query = "SELECT * FROM voiture WHERE idVisibilite = 1 AND idUser = :idUser";
 
@@ -350,8 +346,8 @@ class Car
 
     /**
      * Check if his own car
-     * @param mixed $idCar
-     * @param mixed $idUser
+     * @param integer $idCar
+     * @param integer $idUser
      * @return mixed
      */
     public static function verifyOwnCar(int $idCar, int $idUser)
@@ -371,7 +367,7 @@ class Car
 
     /**
      * Check selected car for update
-     * @param mixed $idCar
+     * @param integer $idCar
      * @return mixed
      */
     public static function selectedCar(int $idCar)
@@ -387,23 +383,23 @@ class Car
 
     /**
      * Update car 
-     * @param mixed $idCar
+     * @param integer $idCar
      * @param mixed $fabricationDate
-     * @param mixed $idCategorie
-     * @param mixed $modelCar
-     * @param mixed $brand
-     * @param mixed $idMotor
-     * @param mixed $idEnergy
-     * @param mixed $idTransmission
-     * @param mixed $idGearBox
-     * @param mixed $weight
-     * @param mixed $nbDoors
-     * @param mixed $nbSeats
+     * @param integer $idCategorie
+     * @param string $modelCar
+     * @param string $brand
+     * @param integer $idMotor
+     * @param integer $idEnergy
+     * @param integer $idTransmission
+     * @param integer $idGearBox
+     * @param integer $weight
+     * @param integer $nbDoors
+     * @param integer $nbSeats
      * @param mixed $comment
-     * @param mixed $idVisibility
+     * @param integer $idVisibility
      * @return mixed
      */
-    public static function modifyCar(int $idCar, $fabricationDate, $idCategorie, $modelCar, $brand, $idMotor, $idEnergy, $idTransmission, $idGearBox, $weight, $nbDoors, $nbSeats, $comment, $idVisibility)
+    public static function modifyCar(int $idCar, $fabricationDate, int $idCategorie, string $modelCar, string $brand, int $idMotor, int $idEnergy, int $idTransmission, int $idGearBox, int $weight, int $nbDoors, int $nbSeats, $comment, int $idVisibility)
     {
         $query = "UPDATE voiture SET dateFabrication = :dateFabrication, 
             idCategorie = :idCategorie, 
@@ -442,7 +438,7 @@ class Car
 
     /**
      * Get all car detail 
-     * @param mixed $idCar
+     * @param integer $idCar
      * @return mixed
      */
     public static function carDetail(int $idCar): mixed
@@ -465,11 +461,11 @@ class Car
 
     /**
      * add to favorite car
-     * @param mixed $idCar
-     * @param mixed $idUser
+     * @param integer $idCar
+     * @param integer $idUser
      * @return mixed
      */
-    public static function addFavoriteCar(int $idCar, $idUser)
+    public static function addFavoriteCar(int $idCar, int $idUser)
     {
         $query = "INSERT INTO favoris (idVoiture, idUser) VALUES (:idVoiture, :idUser)";
 
@@ -481,11 +477,11 @@ class Car
 
     /**
      * check if the car is favorite
-     * @param mixed $idUser
-     * @param mixed $idCar
+     * @param integer $idUser
+     * @param integer $idCar
      * @return mixed
      */
-    public static function isFavorite($idUser, $idCar)
+    public static function isFavorite(int $idUser, int $idCar)
     {
         $query = "SELECT * FROM favoris WHERE idUser = :idUser AND idVoiture = :idVoiture";
 
@@ -498,10 +494,10 @@ class Car
 
     /**
      * Get all favorite car
-     * @param mixed $idUser
+     * @param integer $idUser
      * @return mixed
      */
-    public static function allFavoriteCar($idUser)
+    public static function allFavoriteCar(int $idUser)
     {
         $query = "SELECT * FROM favoris
         LEFT JOIN voiture ON favoris.idVoiture = voiture.idVoiture
@@ -516,11 +512,11 @@ class Car
 
     /**
      * delete favorite car
-     * @param mixed $idUser
-     * @param mixed $idCar
+     * @param integer $idUser
+     * @param integer $idCar
      * @return mixed
      */
-    public static function deleteFavoriteCar($idUser, $idCar)
+    public static function deleteFavoriteCar(int $idUser, int $idCar)
     {
         $query = "DELETE FROM favoris WHERE idUser = :idUser AND  idVoiture = :idVoiture";
 
@@ -533,11 +529,11 @@ class Car
 
     /**
      * duplicate car
-     * @param mixed $idUser
-     * @param mixed $idCar
+     * @param integer $idUser
+     * @param integer $idCar
      * @return mixed
      */
-    public static function duplicateCar($idUser, $idCar)
+    public static function duplicateCar(int $idUser, int $idCar)
     {
         $query = "INSERT INTO voiture (
         idUser, 
@@ -585,18 +581,18 @@ class Car
     }
 
     /**
-     * search car
+     * search car by brand, model, category, motorisation, transmission, year
      *
-     * @param [type] $brand
-     * @param [type] $model
-     * @param [type] $idcategory
-     * @param [type] $idmotorisation
-     * @param [type] $idtransmission
+     * @param string $brand
+     * @param string $model
+     * @param integer $idcategory
+     * @param integer $idmotorisation
+     * @param integer $idtransmission
      * @param [type] $minYear
      * @param [type] $maxYear
      * @return void
      */
-    public static function searchCars($brand, $model, $idcategory, $idmotorisation, $idtransmission, $minYear, $maxYear)
+    public static function searchCars(string $brand, string $model, int $idcategory, int $idmotorisation, int $idtransmission, $minYear, $maxYear)
     {
         $query = "SELECT * FROM voiture 
         WHERE (marqueVoiture LIKE :marqueVoiture OR :marqueVoiture IS NULL) 

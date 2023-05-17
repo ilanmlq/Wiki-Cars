@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * @author : Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: AdminControllers.php
+ * Description : Page qui reçoit des actions des admins et en fonctions redirige elle aussi sur les pages convenue et transmet les données.
+ */
+
 if ($_SESSION['role'] != 1) {
     header("Location: index.php?url=home&action=home");
     exit;
@@ -18,6 +26,7 @@ $allCars = Car::findAllCar();
 $allCarsPrivate = Car::findAllCarPrivate();
 
 switch ($action) {
+
     case 'admin':
 
         include './views/administration.php';
@@ -27,7 +36,6 @@ switch ($action) {
 
         $inactiv = filter_input(INPUT_POST, 'inactiv', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        //button pressed -> ban the user
         if ($inactiv != NULL) {
             Admin::setInactivUser($inactiv);
             $_SESSION['adminUserInactiv'] = "<strong>Utilisateur Inactif</strong> L'utilisateur sélectionné a été correctement desactiver";
@@ -42,7 +50,6 @@ switch ($action) {
 
         $activ = filter_input(INPUT_POST, 'activ', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        //button pressed -> deban the user
         if ($activ != NULL) {
             $_SESSION['adminUserActiv'] = "<strong>Utilisateur Activer</strong> L'utilisateur sélectionné a été correctement activer";
             Admin::setActivUser($activ);
@@ -54,13 +61,13 @@ switch ($action) {
         $private = filter_input(INPUT_POST, 'private', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $modify = filter_input(INPUT_POST, 'modify', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        if ($private != NULL) {           
+        if ($private != NULL) {
             car::modifyPrivateAdmin($private);
             $_SESSION['modifyPrivateAdmin'] = "La fiche a été mis en privé";
             header("Location: index.php?url=admin&action=admin");
             exit;
         }
-        if($modify != NULL){
+        if ($modify != NULL) {
             header("Location: index.php?url=cars&action=modifyCar&idCar=$modify");
             exit;
         }

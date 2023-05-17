@@ -1,4 +1,12 @@
-<?php if ($_SESSION['errorModifyCar']) { ?>
+<?php 
+/**
+ * @author  Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: modifyCar.php
+ * Descriptif : Page qui permet de modifier une fiche
+ */
+
+if ($_SESSION['errorModifyCar']) { ?>
     <div class="alert alert-warning  alert-dismissible fade show" role="alert">
         <?php echo $_SESSION['errorModifyCar'];
         unset($_SESSION['errorModifyCar']);

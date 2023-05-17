@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author : Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: AuthControllers.php
+ * Description : Page qui reçoit des actions et récupère des données de l'authentification et en fonctions redirige elle aussi sur les pages convenue et transmet les données.
+ */
+
 require_once './models/database.php';
 require_once './models/car.php';
 require_once './models/admin.php';
@@ -21,19 +28,18 @@ switch ($action) {
 
         $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        // Input from form
         $name =  filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
         $fileTmpName = $_FILES["file"]["tmp_name"];
 
-        // Form error
+
         $_SESSION['errorRegister'] = NULL;
         $formValid = false;
 
         if ($action) {
-            // Test if form is valid
             if (User::emailAlreadyExist($email)) {
                 $_SESSION['errorRegister'] .= '<p>Email existe déjà</p>';
             }
@@ -79,14 +85,10 @@ switch ($action) {
         }
 
         if ($formValid) {
-            // Create a new account
-            User::register($name, $firstName, $email, $pseudo, $password, $avatar);
+            User::register($name, $firstName, $email, $pseudo, filter_input(INPUT_POST, 'password'), $avatar);
 
-            //read the user's email
             $user = User::readUserByEmail($email);
 
-            // Create session with user informations
-            //connect the user 
             $_SESSION = [
                 'idUser' => $user->idUser,
                 'isConnected' => true,
@@ -95,7 +97,7 @@ switch ($action) {
                 'pseudo' => $user->pseudo,
                 'role' => $user->idRole
             ];
-            $_SESSION['validRegister'] = '<li>Inscription reussi</li>';
+            $_SESSION['validRegister'] = '<p>Inscription reussi</p>';
             header("Location: index.php");
             exit;
         } else {
@@ -107,7 +109,6 @@ switch ($action) {
 
         $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        // Input from form
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
         if ($action) {
@@ -115,12 +116,10 @@ switch ($action) {
                 $_SESSION['errorLogin'] = "Votre compte est inactif";
             } else {
 
-                // Test if login is not correct
                 if (User::login($email, filter_input(INPUT_POST, 'password')) != 0) {
                     $_SESSION['errorLogin'] = "Les informations de connexion ne sont pas correctes";
                 }
 
-                // Test if login is correct
                 if (User::login($email, filter_input(INPUT_POST, 'password')) == 0) {
                     $_SESSION['errorLogin'] = NULL;
                     $_SESSION['validLogin'] = "<strong>Connexion réussi</strong> Vous êtes maintenant connecté";
@@ -134,44 +133,42 @@ switch ($action) {
 
     case 'logout':
 
-        // Session destroy
         User::logout();
         break;
 
     case 'account':
-        // User not connected
         if (!User::isConnected()) {
             header('Location: index.php');
             exit;
         }
 
-        // Input from form
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $user = User::readUserByEmail($email);
-
-
         if ($action) {
+            $user = User::readUserByEmail($email);
             if (password_verify(filter_input(INPUT_POST, 'oldPassword'), $user->mdp)) {
-                // Test if edit password is valid
+
                 if (strlen(filter_input(INPUT_POST, 'password')) <= 4) {
-                    $_SESSION['errorAccount'] = "Le mot de passe doit contenir plus de 4 caractères";
+                    $_SESSION['errorAccount'] = "<p>Le mot de passe doit contenir plus de 4 caractères</p>";
                     header("Location: index.php?url=auth&action=account");
                     exit;
                 }
 
-                // Tests before editing password
                 if ($email == $_SESSION['email']) {
 
                     if (filter_input(INPUT_POST, 'password') == filter_input(INPUT_POST, 'confirmPassword')) {
                         User::editAccount($email, $pseudo, filter_input(INPUT_POST, 'password'));
-                        $_SESSION['validAccount'] = "Modification réussi";
                         header("Location: index.php?url=auth&action=logout");
                         exit;
                     }
+                    else {
+                        $_SESSION['errorAccount'] = "<p>Erreur confirmation du mot de passe</p>";
+                    }
                 }
+            } else{
+                $_SESSION['errorAccount'] = "<p>Ancien mot de passe incorrect</p>";
             }
         }
         include './views/auth/account.php';

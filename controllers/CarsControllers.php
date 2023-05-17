@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * @author : Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: CarsControllers.php
+ * Description : Page qui reçoit des actions et récupère des données des voitures et en fonctions redirige elle aussi sur les pages convenue et transmet les données.
+ */
+
 require_once './models/database.php';
 require_once './models/car.php';
 require_once './models/admin.php';

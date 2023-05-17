@@ -20,9 +20,6 @@ if ($url == "") {
 }
 include './views/header.php';
 
-
-//var_dump($_SESSION);
-
 // redirect in tems of url
 switch ($url) {
     case 'home':
@@ -45,5 +42,3 @@ switch ($url) {
         header("Location: index.php?url=home&action=home");
         exit;
 }
-
-include './views/footer.php';

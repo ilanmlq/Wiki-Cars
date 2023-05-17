@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * @author  Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: administration.php
+ * Descriptif : Page d'administration pour gerer les utilisateurs et les fiches
+ */
 if (!User::isConnected()) {
     header("Location: ../index.php?url=home&action=home");
     exit;
@@ -53,7 +60,6 @@ if (isset($_SESSION['adminUserActiv'])) { ?>
             </thead>
             <tbody>
                 <?php
-                // List all the users in the db
                 foreach ($allUsers as $user) {
                 ?>
                     <tr>
@@ -92,7 +98,6 @@ if (isset($_SESSION['adminUserActiv'])) { ?>
             </thead>
             <tbody>
                 <?php
-                // List all the users in the db
                 foreach ($inactivUsers as $user) {
                 ?>
                     <tr>
@@ -130,7 +135,6 @@ if (isset($_SESSION['adminUserActiv'])) { ?>
             </thead>
             <tbody>
                 <?php
-                // List all the cars in the db
                 foreach ($allCars as $car) {
                 ?>
                     <tr>
@@ -168,7 +172,6 @@ if (isset($_SESSION['adminUserActiv'])) { ?>
             </thead>
             <tbody>
                 <?php
-                // List all the cars in the db
                 foreach ($allCarsPrivate as $car) {
                 ?>
                     <tr>

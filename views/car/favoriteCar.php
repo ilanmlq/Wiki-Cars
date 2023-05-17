@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author  Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: favoriteCar.php
+ * Descriptif : Page qui affiche les fiches favorites de l'utilisateur
+ */
 if (!User::isConnected()) {
     header("Location: ../index.php?url=home&action=home");
     exit;

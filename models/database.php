@@ -4,8 +4,8 @@
  *  @author : Ilan Maleq
  * Project: Wiki-Cars
  * Descriptif   : Classe d'acces aux donnees Utilise les services de la classe PDO
- * -> Les attributs sont tous statiques, les 4 premiers pour la connexion
- * -> $monPdo qui contiendra l'unique instance de la classe
+ * Les attributs sont tous statiques, les 4 premiers pour la connexion
+ * $monPdo qui contiendra l'unique instance de la classe
  */
 
  require_once 'config.php';

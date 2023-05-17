@@ -13,7 +13,7 @@ class User
 {
     /**
      * Get all user from user
-     * 
+     *
      * @return array
      */
     public static function findAll(): array
@@ -28,12 +28,12 @@ class User
     }
 
     /**
-     * Find a user by his Email
+     * Get all user by email
      *
-     * @param [string] $email
+     * @param string $email
      * @return mixed
      */
-    public static function readUserByEmail($email): mixed
+    public static function readUserByEmail(string $email): mixed
     {
         $query = 'SELECT * FROM user WHERE email = :email';
 
@@ -45,12 +45,12 @@ class User
     }
 
     /**
-     * Find a user by his pseudo
+     * Get all user by pseudo
      *
-     * @param [type] $pseudo
+     * @param string $pseudo
      * @return mixed
      */
-    public static function readUserByPseudo($pseudo): mixed
+    public static function readUserByPseudo(string $pseudo): mixed
     {
         $query = 'SELECT * FROM user WHERE pseudo = :pseudo';
 
@@ -68,7 +68,7 @@ class User
      * @param string $password
      * @return void
      */
-    public static function login($email, $password)
+    public static function login(string $email, string $password)
     {
         $user = User::readUserByEmail($email);
 
@@ -93,7 +93,7 @@ class User
 
 
     /**
-     * Return statment of user if he's connected or not
+     * Check if the user is connected
      *
      * @return boolean
      */
@@ -123,17 +123,15 @@ class User
     /**
      * Update the password with the new entered password
      *
-     * @param [string] $email
-     * @param [string] $newPassword
+     * @param string $email
+     * @param string $newPassword
      * @return boolean
      */
-    public static function editAccount($email, $pseudo, $newPassword): bool
+    public static function editAccount(string $email, string $pseudo, string $newPassword): bool
     {
         $userByEmail = User::readUserByEmail($email);
         $userByPseudo = User::readUserByPseudo($pseudo);
-        // Vérifie si le nouveau pseudo est déjà pris par un autre utilisateur
         if ($userByPseudo && $userByPseudo->email != $email) {
-            // Le nouveau pseudo est déjà pris par un autre utilisateur
             return false;
         }
         $query = "UPDATE user SET pseudo = :pseudo, mdp = :mdp WHERE idUser = :idUser";
@@ -148,10 +146,10 @@ class User
     /**
      * Check if the email already exist
      *
-     * @param [type] $email
-     * @return void
+     * @param string $email
+     * @return boolean
      */
-    public static function emailAlreadyExist($email)
+    public static function emailAlreadyExist(string $email)
     {
         $query = "SELECT COUNT(*) FROM user WHERE email = :email";
 
@@ -162,28 +160,35 @@ class User
         return $exist;
     }
 
-    public static function pseudoAlreadyExist($pseudo)
+    /**
+     * Check if the pseudo already exist
+     *
+     * @param string $pseudo
+     * @return boolean
+     */
+    public static function pseudoAlreadyExist(string $pseudo)
     {
         $query = "SELECT COUNT(*) FROM user WHERE pseudo = :pseudo";
 
         $req = MonPdo::getInstance()->prepare($query);
         $req->bindParam(':pseudo', $pseudo);
         $req->execute();
-        $exist = $req->fetchColumn();   
+        $exist = $req->fetchColumn();
         return $exist;
     }
+
     /**
-     * Insert into table for register
+     * Register a new user
      *
-     * @param [type] $name
-     * @param [type] $firstName
-     * @param [type] $email
-     * @param [type] $pseudo
-     * @param [type] $password
-     * @param [type] $avatar
+     * @param string $name
+     * @param string $firstName
+     * @param string $email
+     * @param string $pseudo
+     * @param string $password
+     * @param string $avatar
      * @return boolean
      */
-    public static function register($name, $firstName, $email, $pseudo, $password, $avatar): bool
+    public static function register(string $name, string $firstName, string $email, string $pseudo, string $password, $avatar): bool
     {
         $query = "INSERT INTO user (nom, prenom, email, pseudo, mdp, avatar) VALUES (:nom, :prenom, :email, :pseudo, :mdp, :avatar)";
 
@@ -198,12 +203,12 @@ class User
     }
 
     /**
-     * Set user activ to inactiv
+     * Check if the user is inactiv
      *
-     * @param [type] $email
+     * @param string $email
      * @return void
      */
-    public static function userIsInactiv($email)
+    public static function userIsInactiv(string $email)
     {
         $query = 'SELECT * FROM user WHERE email = :email AND idStatus = 2';
 

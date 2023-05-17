@@ -1,4 +1,11 @@
 <?php
+/**
+ * @author  Ilan Maleq
+ * Project: Wiki-Cars
+ * Page: carDetail.php
+ * Descriptif : Page qui affiche le détail d'une fiche
+ */
+
 if ($carDetail->idVisibilite == 1 && ($_SESSION['idUser'] != $carDetail->idUser && $_SESSION['role'] != 1)) {
     header("Location: index.php?url=home&action=home");
 }
