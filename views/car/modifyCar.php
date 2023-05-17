@@ -6,6 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div><br>
 <?php } ?>
+<h1 class="h1 text-center p-4 font-weight-bold text-underline">Modifier la fiche <?= $selectedCar->marqueVoiture ?> <?= $selectedCar->modeleVoiture ?></h1>
 <form method="POST" action="index.php?url=cars&action=modifyCar&idCar=<?= $selectedCar->idVoiture ?>" enctype="multipart/form-data">
     <label for="brand">Marque :</label>
     <input type="text" class="form-control" name="brand" value="<?= $selectedCar->marqueVoiture ?>"><br><br>

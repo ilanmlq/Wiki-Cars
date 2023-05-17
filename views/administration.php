@@ -35,6 +35,7 @@ if (isset($_SESSION['adminUserActiv'])) { ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div><br>
 <?php } ?>
+<br>
 <div class="table-responsive">
     <form method="post" action="index.php?url=admin&action=adminUserInactiv" class="mx-auto w-75">
         <table class="table table-hover">
