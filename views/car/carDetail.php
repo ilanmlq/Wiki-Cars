@@ -29,7 +29,7 @@ if ($carDetail->idVisibilite == 1 && ($_SESSION['idUser'] != $carDetail->idUser 
                 <p class="mt-3"><?= $carDetail->commentaire ?></p>
                 <td><a href="views/upload<?= $carDetail->documentTechnique ?> " class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Document technique</a></td>
                 <p class="text-muted mb-2 text-end">Fiche crée le <?= $carDetail->dateCreationFiche ?></p>
-                <p class="text-muted mb-3 text-end">Écris par <?= $carDetail->pseudo ?></p>
+                <p class="text-muted mb-3 text-end">Écrit par <?= $carDetail->pseudo ?></p>
             </div>
 
         </div>

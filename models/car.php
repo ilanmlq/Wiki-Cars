@@ -585,14 +585,14 @@ class Car
      *
      * @param string $brand
      * @param string $model
-     * @param integer $idcategory
-     * @param integer $idmotorisation
-     * @param integer $idtransmission
+     * @param  $idcategory
+     * @param  $idmotorisation
+     * @param  $idtransmission
      * @param [type] $minYear
      * @param [type] $maxYear
      * @return void
      */
-    public static function searchCars(string $brand, string $model, int $idcategory, int $idmotorisation, int $idtransmission, $minYear, $maxYear)
+    public static function searchCars(string $brand, string $model, $idcategory, $idmotorisation, $idtransmission, $minYear, $maxYear)
     {
         $query = "SELECT * FROM voiture 
         WHERE (marqueVoiture LIKE :marqueVoiture OR :marqueVoiture IS NULL) 

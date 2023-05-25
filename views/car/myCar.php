@@ -130,7 +130,7 @@ if (isset($_SESSION['errorAddCar'])) { ?>
         </table>
     </form>
 </div>
-<h1 class="h1 text-center p-4 font-weight-bold text-underline">Crée une fiche</h1>
+<h1 class="h1 text-center p-4 font-weight-bold text-underline">Créer une fiche</h1>
 <form action="index.php?url=cars&action=addCar" method="POST" enctype="multipart/form-data">
     <label for="brand">Marque :</label>
     <input type="text" class="form-control" name="brand" placeholder="BMW" value="<?= $brand ?? '' ?>"><br><br>

@@ -100,7 +100,7 @@ if (isset($_SESSION['addFavoriteCar'])) { ?>
                                 $isFavorite = Car::isFavorite($_SESSION['idUser'], $car->idVoiture); ?>
                                 <a href="index.php?url=cars&action=duplicateCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-success">Dupliquer</a>
                                 <?php if (!$isFavorite || ($_SESSION['idUser'] != $isFavorite['idUser'])) { ?>
-                                    <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favori</a>
+                                    <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter aux favori</a>
                                 <?php } ?>
                             <?php } ?>
                             <a href="index.php?url=cars&action=carDetail&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-dark">Voir plus</a>
@@ -111,7 +111,7 @@ if (isset($_SESSION['addFavoriteCar'])) { ?>
         <?php } ?>
     </div>
 <?php } ?>
-<h1 class="h1 text-center p-4 font-weight-bold text-underline">Dernière fiches</h1>
+<h1 class="h1 text-center p-4 font-weight-bold text-underline">Dernières fiches</h1>
 <div class="card-group">
     <?php
     foreach ($lastCar as $car) { ?>
@@ -128,7 +128,7 @@ if (isset($_SESSION['addFavoriteCar'])) { ?>
                             <a href="index.php?url=cars&action=duplicateCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-success">Dupliquer</a>
                             <?php
                             if ((!$isFavorite || ($_SESSION['idUser'] != $isFavorite['idUser']))) { ?>
-                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favori</a>
+                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter aux favori</a>
                         <?php }
                         } ?>
                         <a href="index.php?url=cars&action=carDetail&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-dark">Voir plus</a>
@@ -156,7 +156,7 @@ if (isset($_SESSION['addFavoriteCar'])) { ?>
                             <a href="index.php?url=cars&action=duplicateCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-success">Dupliquer</a>
                             <?php
                             if ((!$isFavorite || ($_SESSION['idUser'] != $isFavorite['idUser']))) { ?>
-                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter au favori</a>
+                                <a href="index.php?url=cars&action=addFavoriteCar&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-primary">Ajouter aux favori</a>
                         <?php }
                         } ?>
                         <a href="index.php?url=cars&action=carDetail&idCar=<?= $car->idVoiture ?>" class="btn btn-outline-dark">Voir plus</a>
